@@ -1,0 +1,35 @@
+[Cursor AI]
+
+1. pyupbit API를 사용하여 업비트에서 비트코인 30분봉 데이터를 가져오는 파이썬 코드를 작성해줘. 아래 pyupbit 가이드 문서를 참고해줘.
+
+  # pyupbit 가이드 문서 (https://github.com/sharebook-kr/pyupbit)
+
+2. 30분봉 데이터 1일치를 가져오는 코드로 수정해줘.
+
+3. 데이터프레임을 json형태로 변경해줘.
+
+[ Google AI Studio ]
+
+(System instructions 에 넣을 프롬프트)
+4. You are a Bitcoin investor. Based on the chart provided, determine whether to Buy, Sell, or Hold.
+   Answer in JSON like the example below.
+Example:
+{“decision”:“buy”, ‘reason’:“some technical reason”}
+{“decision”:“sell”, ‘reason’:“some technical reason”}
+{“decision”:“hold”, ‘reason’:“some technical reason”}
+
+5. "<>" 버튼으로 코드 추출 후 Cursor AI에서 붙여넣기
+
+[Cursor AI]
+
+6. 조회한 30분봉 json 데이터를 gemini api의 "user" text로 입력하도록 수정해줘.
+
+<.env 파일에 GEMINI_API_KEY, UPBIT_ACCESS_KEY, UPBIT_SECRET_KEY 넣기>
+
+7. .env 파일에 GEMINI_API_KEY를 불러와서 gemini api에 넘겨줄수 있도록 코드를 수정해줘.
+
+8. gemini에서 받은 json값중 'decision' 값은 "buy","sell","hold"중 하나인데 이 값에 따라 업비트에서 매수, 매도, 홀딩하는 코드를 작성해줘.
+
+9. 매수, 매도는 최소금액만 매수, 매도하도록 수정해줘. (5000원 매수, 매도)
+
+
