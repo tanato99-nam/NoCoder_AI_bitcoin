@@ -1,0 +1,72 @@
+[Cursor AI]
+
+1. pyupbit API를 사용하여 업비트에서 비트코인 30분봉 데이터를 가져오는 파이썬 코드를 작성해줘. 아래 pyupbit 가이드 문서를 참고해줘.
+
+  # pyupbit 가이드 문서 (https://github.com/sharebook-kr/pyupbit)
+
+2. 30분봉 데이터 1일치를 가져오는 코드로 수정해줘.
+
+3. 데이터프레임을 json형태로 변경해줘.
+
+[ Google AI Studio ]
+
+(System instructions 에 넣을 프롬프트)
+4. You are a Bitcoin investor. Based on the chart provided, determine whether to Buy, Sell, or Hold.
+   Answer in JSON like the example below.
+Example:
+{“decision”:“buy”, ‘reason’:“some technical reason”}
+{“decision”:“sell”, ‘reason’:“some technical reason”}
+{“decision”:“hold”, ‘reason’:“some technical reason”}
+
+5. "<>" 버튼으로 코드 추출 후 Cursor AI에서 붙여넣기
+
+[Cursor AI]
+
+6. 조회한 30분봉 json 데이터를 gemini api의 "user" text로 입력하도록 수정해줘.
+
+<.env 파일에 GEMINI_API_KEY, UPBIT_ACCESS_KEY, UPBIT_SECRET_KEY 넣기>
+
+7. .env 파일에 GEMINI_API_KEY를 불러와서 gemini api에 넘겨줄수 있도록 코드를 수정해줘.
+
+8. gemini에서 받은 json값중 'decision' 값은 "buy","sell","hold"중 하나인데 이 값에 따라 업비트에서 매수, 매도, 홀딩하는 코드를 작성해줘.
+
+9. 매수, 매도는 최소금액만 매수, 매도하도록 수정해줘. (5000원 매수, 매도)
+
+10. python과 selenium을 활용해서 "https://upbit.com/full_chart?code=CRIX.UPBIT.KRW-BTC" 이 주소에 들어가서 전체 화면 캡펴를 하여 이미지 저장을 해주는 코드를 작성해줘. selenium 사용법은 아래와 같아.
+
+  # SELENIUM 가이드 문서 (https://www.selenium.dev/selenium/docs/api/py/)
+
+11. 캡쳐를 하기 전에 이 버튼을 눌러서 메뉴를 열고 "1시간"이라는 택스트를 클릭하고 싶어. 시간에 대한 메뉴 버튼의 Xpath는 아래와 같아.
+Xpath:
+/html/body/div[1]/div[2]/div[3]/span/div/div/div[1]/div/div/cq-menu[1]
+
+메뉴 클릭은 성공했는데 "1시간" 옵션은 선택하지 못했어. "1시간"이라는 메뉴는 아래와 같은 Xpath에 위치하고 있어.
+Xpath:
+/html/body/div[1]/div[2]/div[3]/span/div/div/div[1]/div/div/cq-menu[1]/cq-menu-dropdown/cq-item[8]
+
+12. 추가로 "지표" 버튼을 클릭하여 "볼린저밴드"를 클릭한 후 해당 화면도 클릭하고 싶어. 각각의 Xpath는 아래와 같아.
+지표 Xpath:
+/html/body/div[1]/div[2]/div[3]/span/div/div/div[1]/div/div/cq-menu[3]
+볼린저밴드 Xpath:
+/html/body/div[1]/div[2]/div[3]/span/div/div/div[1]/div/div/cq-menu[3]/cq-menu-dropdown/cq-scroll/cq-studies/cq-studies-content/cq-item[15]
+
+13. test.py의 "1시간", "볼린저밴드" 캡쳐하는 부분을 autotrade.py 파일에 통합해줘.
+
+14. gemini api의 image understanding 문서를 참고하여 aI 자동매매 코드에 차트이미지를 캡쳐한 것을 첨부하여 더 정교한 AI 자동매매가 될수 있도록 코드를 수정해줘.
+
+ # Gemini API Image Understanding 가이드 문서 (https://ai.google.dev/gemini-api/docs/image-understanding)
+
+15. btc 30분봉 데이터와 캡쳐된 차트 이미지를 먼저 수집한 후 이 데이터를 모두 gemini api가 종합적으로 판단하여 거래를 실행하도록 수정해줘. 
+
+
+
+
+
+
+
+
+
+
+
+
+
